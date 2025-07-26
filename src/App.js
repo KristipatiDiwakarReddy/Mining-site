@@ -12,7 +12,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import { setDefaultContent, defaultContent } from "./content";
 import { db } from "./firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useAuth } from "./hooks/useAuth";
 import ServiceDetail from './components/ServiceDetail';
 import TeamMember from './pages/TeamMember';
@@ -39,6 +39,25 @@ function App() {
     };
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const docRef = doc(db, "site_content", "content");
+  //     const snap = await getDoc(docRef);
+  //     // if (snap.exists()) {
+  //     //   setDefaultContent(snap.data());
+  //     //   setContent(snap.data());
+  //     //   setLoading(false);
+  //     // } else {
+  //       // Push local defaultContent to Firestore if not exists
+  //       await setDoc(docRef, defaultContent);
+  //       setDefaultContent(defaultContent);
+  //       setContent(defaultContent);
+  //       setLoading(false);
+  //     //}
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
       <Router>

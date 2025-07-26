@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { serviceDetails } from '../data/serviceDetails';
-import Carousel from "../../src/pages/components/Carousel";
+import { defaultContent as content } from '../content';
+import Carousel from "../pages/components/Carousel";
 import MultiCarousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const ServiceDetail = () => {
   const { slug } = useParams();
-  const service = serviceDetails[slug];
+  const service = content.servicesDetails[slug];
 
   if (!service) {
     return <div>Service not found</div>;

@@ -21,24 +21,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { defaultContent as content } from "../content";
 
-const navItems = [
-  { label: "Home", path: "/" },
-  {
-    label: "Services",
-    path: "/services",
-    subItems: [
-      { label: "MINING", path: "/services/mining" },
-      { label: "SURVEY", path: "/services/survey" },
-      { label: "ENVIRONMENT", path: "/services/environment" },
-      { label: "LABORATORY", path: "/services/laboratory" },
-      { label: "GEOLOGY", path: "/services/geology" }
-    ]
-  },
-  { label: "Accreditations", path: "/accreditations" },
-  { label: "Gallery", path: "/gallery" },
-  { label: "About Us", path: "/about" },
-  { label: "Contact Us", path: "/contact" }
-];
+const navItems = (content.header.nav || []).map(item => ({
+  ...item,
+  subItems: item.label === "Services" ? (content.header.servicesDropdown || []) : undefined
+}));
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -118,7 +104,7 @@ const Header = () => {
               }}
             >
               {navItems.map((item, index) =>
-                item.subItems ? (
+                item.subItems && item.subItems.length > 0 ? (
                   <Box key={item.label} sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
                     <Tab
                       label={item.label}
@@ -129,7 +115,7 @@ const Header = () => {
                     <IconButton
                       size="small"
                       onClick={handleServicesHover}
-                      sx={{ color: 'white', ml: -2 }} // margin-left to bring closer to tab
+                      sx={{ color: 'white', ml: -2 }}
                       aria-owns={anchorEl ? 'services-menu' : undefined}
                       aria-haspopup="true"
                     >
@@ -167,13 +153,13 @@ const Header = () => {
         onClose={handleMenuClose}
         MenuListProps={{
           onMouseLeave: handleMenuClose,
-          autoFocusItem: false // Prevent auto-focus on first item
+          autoFocusItem: false
         }}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
         PaperProps={{ style: { backgroundColor: "white" } }}
       >
-        {navItems[1].subItems.map(sub => (
+        {(content.header.servicesDropdown || []).map(sub => (
           <MenuItem
             key={sub.label}
             component={Link}
@@ -202,7 +188,7 @@ const Header = () => {
                   primaryTypographyProps={{ style: { color: "black" } }}
                 />
               </ListItem>
-              {item.subItems &&
+              {item.subItems && item.subItems.length > 0 &&
                 item.subItems.map((subItem) => (
                   <ListItem
                     key={subItem.label}

@@ -2,6 +2,7 @@ import React from 'react';
 import MultiCarousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel from "./components/Carousel";
+import { defaultContent as content } from "../content";
 
 const images = [
   "/images/Top Slider/mining pictures 2.jpg",
@@ -18,12 +19,7 @@ const responsive = {
   mobile: { breakpoint: { max: 600, min: 0 }, items: 1 }
 };
 
-const galleryTitles = [
-  'CSR Photos',
-  'Industry Photos',
-  'Office Photos',
-  'Site Photos'
-];
+const galleryTitles = content.gallery.galleryTitles;
 
 // Example image arrays for each carousel (update with your actual image filenames)
 const galleryImages1 = [
@@ -69,7 +65,7 @@ const Gallery = () => (
   <div style={{ position: "relative", top: -64 }}>
       <Carousel images={images} />
   <div style={{ padding: '40px 0', backgroundColor: '#f1f1f1', marginBottom: -64 }}>
-    <h1 style={{ textAlign: 'center', color: '#1976d2', fontWeight: 700, marginBottom: 40 }}>Gallery</h1>
+    <h1 style={{ textAlign: 'center', color: '#1976d2', fontWeight: 700, marginBottom: 40 }}>{content.gallery.heading}</h1>
     {[
       galleryImages1,
       galleryImages2,

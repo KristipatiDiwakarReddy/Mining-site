@@ -1,22 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { defaultContent as content } from "../content";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const links = [
-    { label: "Home", path: "/" },
-    { label: "About Us", path: "/about" },
-    { label: "Services", path: "/services" },
-    { label: "Accreditations", path: "/accreditations" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Contact Us", path: "/contact" },
-  ];
+  const links = (content.footer && content.footer.links) ? content.footer.links : [];
 
   return (
     <footer style={styles.footer}>
       <p style={styles.copyText}>
-        &copy; {currentYear} Global Environment & Mining Services LLP. All rights reserved.
+        {content.footer && content.footer.copyright}
       </p>
       <div style={styles.linkContainer}>
         {links.map((link) => (

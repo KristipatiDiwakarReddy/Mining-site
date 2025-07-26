@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Carousel from "./components/Carousel";
 import "../css/Accreditations.css";
+import { defaultContent as content } from "../content";
 
 const images = [
   "/images/Top Slider/mining pictures 2.jpg",
@@ -28,9 +29,9 @@ function Accreditations() {
     <div style={{ position: "relative", top: -64 }}>
       <Carousel images={images} />
       <div className="accreditations-section" style={{ position: 'relative', top: 25 }}>
-        <h2>Our Accreditations</h2>
+        <h2>{content.accreditations.heading}</h2>
         <div className="accreditations-grid">
-          {[...Array(12)].map((_, index) => (
+          {[...Array(content.accreditations.count)].map((_, index) => (
             <a
               key={index}
               href={getPdfPath(index)}

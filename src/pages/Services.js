@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { ServicesSection } from '../pages/Home'; // Import the ServicesSection component
 import Carousel from "./components/Carousel";
+import { defaultContent as content } from "../content";
 
 const images = [
   "/images/Top Slider/mining pictures 2.jpg",
